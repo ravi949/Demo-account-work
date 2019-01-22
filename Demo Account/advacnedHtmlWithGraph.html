@@ -1,0 +1,56 @@
+<html ng-app="netsuiteApp">
+
+	<head>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular.min.js" type="text/javascript"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-google-chart/0.1.0/ng-google-chart.min.js" type="text/javascript"></script>
+	</head>
+
+<body ng-controller="GenericChartCtrl">
+	<h1>Welcome ${owner.name}</h1>
+	
+	<div google-chart chart="myChartObject" style="height:600px; width:100%;"></div>
+</body>
+
+<script type="text/javascript">
+ angular.module('netsuiteApp',["googlechart"])
+
+ angular.module("netsuiteApp")
+.controller("GenericChartCtrl", function ($scope) {
+	$scope.list = ${chartList.data}
+	console.log($scope.list)
+	
+    $scope.myChartObject = {};
+    
+    $scope.myChartObject.type = "PieChart";
+    
+    $scope.onions = [
+        {v: "Onions"},
+        {v: 3},
+    ];
+
+    $scope.myChartObject.data = {"cols": [
+        {id: "t", label: "Topping", type: "string"},
+        {id: "s", label: "Slices", type: "number"}
+    ], "rows": [
+        {c: [
+            {v: "Mushrooms"},
+            {v: 3},
+        ]},
+        {c: $scope.onions},
+        {c: [
+            {v: "Olives"},
+            {v: 31}
+        ]},
+        {c: [
+            {v: "Zucchini"},
+            {v: 1},
+        ]},
+        {c: [
+            {v: "Pepperoni"},
+            {v: 2},
+        ]}
+    ]};
+});
+</script>
+
+</html>
